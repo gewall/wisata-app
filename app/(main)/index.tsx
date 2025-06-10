@@ -87,7 +87,10 @@ const Home = () => {
         keyExtractor={(item) => item?.id}
         renderItem={({ item }) => (
           <Link
-            href={{ pathname: "/main/detail/[id]", params: { id: item.slug } }}
+            href={{
+              pathname: "/(main)/detail/[id]",
+              params: { id: item.slug },
+            }}
             asChild
           >
             <Pressable
