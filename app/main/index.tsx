@@ -1,3 +1,4 @@
+import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import { FlatList, Pressable, useColorScheme, View } from "react-native";
@@ -10,6 +11,7 @@ type DataWisata = {
   deskripsi: string;
   alamat: string;
   slug: string;
+  sampul: string;
 };
 
 const Home = () => {
@@ -38,6 +40,9 @@ const Home = () => {
           paddingVertical: 25,
           paddingHorizontal: 25,
           backgroundColor: colors === "dark" ? "#000" : "#fff",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <Text
@@ -48,6 +53,18 @@ const Home = () => {
         >
           Selamat datang!
         </Text>
+        <View style={{ height: 50 }}>
+          <Image
+            source={require("../../assets/images/logo.jpg")}
+            style={{
+              flex: 1,
+              width: 50,
+              height: 50,
+              borderRadius: 10,
+            }}
+            contentFit="cover"
+          />
+        </View>
       </View>
 
       <View
@@ -77,18 +94,43 @@ const Home = () => {
               style={{
                 padding: 15,
                 marginVertical: 5,
-                backgroundColor: "white",
+                backgroundColor: colors === "dark" ? "black" : "white",
                 borderRadius: 10,
                 marginHorizontal: 15,
                 shadowColor: "#000",
+                flex: 1,
+                flexDirection: "row",
+                borderWidth: colors === "dark" ? 1 : 0,
+                borderColor: colors === "dark" ? "#333446" : "#000",
+                gap: 10,
               }}
             >
-              <Text
-                variant="bodyLarge"
-                style={{ color: colors === "dark" ? "#fff" : "#000" }}
-              >
-                {item?.nama}
-              </Text>
+              <Image
+                source={`https://res.cloudinary.com/djh210frq/image/upload/v1738656191/${item?.sampul}.jpg`}
+                style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 10,
+                }}
+                contentFit="cover"
+              />
+              <View style={{ flex: 1 }}>
+                <Text
+                  variant="bodyLarge"
+                  style={{ color: colors === "dark" ? "#fff" : "#000" }}
+                >
+                  {item?.nama}
+                </Text>
+                <Text
+                  variant="bodySmall"
+                  style={{
+                    color: colors === "dark" ? "#fff" : "#000",
+                    marginVertical: 5,
+                  }}
+                >
+                  {item?.alamat}
+                </Text>
+              </View>
             </Pressable>
           </Link>
         )}

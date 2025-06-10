@@ -1,13 +1,20 @@
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { FlatList, SafeAreaView, ScrollView, View } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+  useColorScheme,
+  View,
+} from "react-native";
 import { Text } from "react-native-paper";
 
 type Props = {};
 
 const DetailWisata = (props: Props) => {
   const { id } = useLocalSearchParams();
+  const colors = useColorScheme();
 
   const [data, setData] = React.useState<any>(null);
 
@@ -28,7 +35,9 @@ const DetailWisata = (props: Props) => {
   console.log(id, data);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: colors === "dark" ? "#000" : "#fff" }}
+    >
       <ScrollView>
         {data && (
           <View style={{ flex: 1 }}>
@@ -52,12 +61,22 @@ const DetailWisata = (props: Props) => {
             <View style={{ flex: 1, margin: 15 }}>
               <View>
                 <Text
-                  style={{ textAlign: "center", marginBottom: 10 }}
+                  style={{
+                    textAlign: "center",
+                    marginBottom: 10,
+                    color: colors === "dark" ? "#fff" : "#000",
+                  }}
                   variant="headlineLarge"
                 >
                   {data.nama}
                 </Text>
-                <Text variant="bodyLarge" style={{ marginBottom: 10 }}>
+                <Text
+                  variant="bodyLarge"
+                  style={{
+                    marginBottom: 10,
+                    color: colors === "dark" ? "#fff" : "#000",
+                  }}
+                >
                   {data.deskripsi}
                 </Text>
                 <View
@@ -69,8 +88,12 @@ const DetailWisata = (props: Props) => {
                     gap: 10,
                   }}
                 >
-                  <Text>Alamat:</Text>
-                  <Text>{data.alamat}</Text>
+                  <Text style={{ color: colors === "dark" ? "#fff" : "#000" }}>
+                    Alamat:
+                  </Text>
+                  <Text style={{ color: colors === "dark" ? "#fff" : "#000" }}>
+                    {data.alamat}
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -81,8 +104,12 @@ const DetailWisata = (props: Props) => {
                     gap: 10,
                   }}
                 >
-                  <Text>Telepon:</Text>
-                  <Text>{data.telepon}</Text>
+                  <Text style={{ color: colors === "dark" ? "#fff" : "#000" }}>
+                    Telepon:
+                  </Text>
+                  <Text style={{ color: colors === "dark" ? "#fff" : "#000" }}>
+                    {data.telepon}
+                  </Text>
                 </View>
                 <View
                   style={{
@@ -93,15 +120,23 @@ const DetailWisata = (props: Props) => {
                     gap: 10,
                   }}
                 >
-                  <Text>Rating:</Text>
-                  <Text>{data.rating}</Text>
+                  <Text style={{ color: colors === "dark" ? "#fff" : "#000" }}>
+                    Rating:
+                  </Text>
+                  <Text style={{ color: colors === "dark" ? "#fff" : "#000" }}>
+                    {data.rating}
+                  </Text>
                 </View>
               </View>
 
               <View style={{ flex: 1, marginTop: 20 }}>
                 <Text
                   variant="headlineSmall"
-                  style={{ textAlign: "center", marginBottom: 10 }}
+                  style={{
+                    textAlign: "center",
+                    marginBottom: 10,
+                    color: colors === "dark" ? "#fff" : "#000",
+                  }}
                 >
                   Galeri
                 </Text>
